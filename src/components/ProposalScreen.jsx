@@ -74,16 +74,18 @@ const ProposalScreen = ({
         <>
           <div className="btn">
             <a 
-              href="https://tusitioexterno.com" 
+              href="https://surpriseforsuset.netlify.app/" 
               rel="noopener noreferrer"
+              target='_blank'
             >
               Ver sorpresa 1
             </a>
           </div>
           <div className="btn">
             <a 
-              href="https://tusitioexterno.com" 
+              href="https://letterforsuset.netlify.app/" 
               rel="noopener noreferrer"
+              target='_blank'
             >
               Ver sorpresa 2
             </a>
