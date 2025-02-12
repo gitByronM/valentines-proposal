@@ -30,7 +30,7 @@ const ProposalScreen = ({
     <div className="container" style={containerStyle}>
       <div className="gif-container">
         <img 
-          src={`/src/assets/${gif}`} 
+          src={`/assets/${gif}`} 
           alt="Animación"
           className="responsive-gif"
           loading="lazy"
