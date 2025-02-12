@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
+function preloadImage(url) {
+  const img = new Image();
+  img.src = url;
+}
+
 const ProposalScreen = ({
   gif,
   heading,
@@ -12,6 +17,14 @@ const ProposalScreen = ({
 }) => {
   const location = useLocation();
   const [dynamicStyles, setDynamicStyles] = useState({});
+
+  useEffect(() => {
+    // Pre-carga el GIF al montar el componente
+    preloadImage('/assets/home.gif');
+    preloadImage('/assets/no1.gif');
+    preloadImage('/assets/no2.gif');
+    preloadImage('/assets/yes.gif');
+  }, []);
 
   const handleMouseEnter = (index) => {
     if (buttons?.[index]?.randomMove) {
@@ -44,13 +57,25 @@ const ProposalScreen = ({
         <div className="btn">
           {buttons.map((btn, index) => {
             const style = btn.randomMove ? dynamicStyles[index] || {} : btn.style;
-            
+
+            // Función combinada para manejar el click
+            const handleClick = (e) => {
+              if (location.pathname === '/no2') {
+                handleMouseEnter(index);
+              }
+              // Ejecutar el onClick original si existe
+              if (btn.onClick) {
+                btn.onClick(e);
+              }
+            };
+
             return btn.to ? (
               <Link
                 key={index}
                 to={btn.to}
                 style={style}
                 onMouseEnter={() => handleMouseEnter(index)}
+                onClick={handleClick}
                 id={btn.id}
               >
                 {btn.text}
@@ -59,8 +84,8 @@ const ProposalScreen = ({
               <button
                 key={index}
                 style={style}
-                onClick={btn.onClick}
                 onMouseEnter={() => handleMouseEnter(index)}
+                onClick={handleClick}
                 id={btn.id}
               >
                 {btn.text}
@@ -69,6 +94,7 @@ const ProposalScreen = ({
           })}
         </div>
       )}
+
 
       {location.pathname === '/yes' && (
         <>
