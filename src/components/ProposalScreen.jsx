@@ -116,6 +116,16 @@ const ProposalScreen = ({
               Ver sorpresa 2
             </a>
           </div>
+          <div className="btn">
+            <a 
+              href="/assets/letter.pdf" 
+              download="carta_para_mi_amor.pdf"
+              rel="noopener noreferrer"
+            >
+              Extra 🫣
+            </a>
+          </div>
+
         </>
       )}
 
